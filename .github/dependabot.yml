@@ -19,3 +19,7 @@ updates:
       interval: "daily"
 #    assignees:
 #      - "serfriz"
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
