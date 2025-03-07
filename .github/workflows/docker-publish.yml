@@ -53,7 +53,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       ## https://github.com/docker/metadata-action
       - name: Extract Docker metadata
@@ -77,8 +77,8 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
           push: ${{ github.event_name != 'pull_request' }}
-          # tags: ${{ steps.meta.outputs.tags }}
-          # labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           tags: |
             docker.io/${{ env.IMAGE_NAME }}:latest
             ghcr.io/${{ env.IMAGE_NAME }}:latest
