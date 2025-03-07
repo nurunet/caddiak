@@ -8,13 +8,13 @@ on:
     - cron: '0 0 1 * *'  # runs at 00:00 on the first day of every month
   push:
     branches: main
-#    paths:
-#      - Dockerfile
+    paths:
+      - caddy-infomaniak/Dockerfile
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
-  DOCKER_NAME: "Caddiak - caddy-infomaniak"
+  DOCKER_NAME: caddy-infomaniak
   DOCKER_DESCRIPTION: "Caddy Docker custom build with Infomaniak DNS module"
 
 # Jobs to run once the workflow is triggered
@@ -28,7 +28,7 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       labels: ${{ steps.metadata.outputs.labels }}
       tags: ${{ steps.metadata.outputs.tags }}
-      platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6,linux/arm64/v8
+      platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
 
     steps:
       - name: Checkout repository
@@ -38,7 +38,7 @@ jobs:
 
       - name: Parse Caddy version
         id: version
-        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' ./Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' $DOCKER_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
 
       - name: Generate image metadata with Caddy version
         uses: docker/metadata-action@v5
@@ -99,7 +99,7 @@ jobs:
         id: build
         with:
           context: .
-          file: ./Dockerfile
+          file: ./${{ env.DOCKER_NAME }}/Dockerfile
           push: true
           provenance: false
           tags: ${{ needs.metadata.outputs.tags }}
