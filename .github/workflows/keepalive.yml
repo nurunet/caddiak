@@ -8,7 +8,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  actions: write
+  contents: read
+  packages: write
 
 jobs:
   ## prevent GitHub from suspending cronjob based triggers due to repository inactivity
