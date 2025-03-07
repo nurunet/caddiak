@@ -14,7 +14,7 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
-  DOCKER_NAME: Caddiak - caddy-infomaniak
+  DOCKER_NAME: "Caddiak - caddy-infomaniak"
   DOCKER_DESCRIPTION: "Caddy Docker custom build with Infomaniak DNS module"
 
 # Jobs to run once the workflow is triggered
