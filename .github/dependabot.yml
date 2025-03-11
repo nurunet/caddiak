@@ -11,14 +11,14 @@ updates:
     schedule:
       interval: "weekly"
 #    assignees:
-#      - "serfriz"
+#      - "nurunet"
   # Check for Docker image updates
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "daily"
 #    assignees:
-#      - "serfriz"
+#      - "nurunet"
     commit-message:
       prefix: fix
       prefix-development: chore
