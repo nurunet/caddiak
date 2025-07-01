@@ -26,5 +26,5 @@ jobs:
       - name: Keep workflows alive
         uses: gautamkrishnar/keepalive-workflow@v2
         with:
-          workflow_files: "docker-publish.yml"
+          workflow_files: "build.caddy-infomaniak.yml"
           time_elapsed: "0"
