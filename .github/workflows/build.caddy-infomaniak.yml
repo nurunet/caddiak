@@ -5,7 +5,10 @@ name: Build caddy-infomaniak
 on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 5 * *"
+  pull_request:
+    types:
+      - closed
   push:
     branches: main
 #    paths:
